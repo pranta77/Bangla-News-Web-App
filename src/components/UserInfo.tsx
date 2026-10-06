@@ -17,6 +17,7 @@ const UserInfo = () => {
       {user ? (
         <div className="flex items-center gap-3 rounded-full border border-gray-200 bg-white px-3 py-2 shadow-md">
           {/* User Image */}
+          <Link href={"/profile"}>
           <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-red-100">
             {user.image ? (
               <Image
@@ -24,13 +25,14 @@ const UserInfo = () => {
                 alt={user.name || "User"}
                 fill
                 className="object-cover"
+                
               />
             ) : (
               <div className="flex h-full w-full items-center justify-center bg-red-100 text-sm font-bold text-red-600">
                 {user.name?.charAt(0).toUpperCase()}
               </div>
             )}
-          </div>
+          </div></Link>
 
           {/* Name + Email */}
           <div className="min-w-0">
