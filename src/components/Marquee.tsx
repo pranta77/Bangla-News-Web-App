@@ -5,23 +5,26 @@ interface hedlineType {
   id: string;
   title: string;
 }
+
 const Marquee = async () => {
   const res = await fetch("https://news-api-v2.vercel.app/api/news?limit=10");
   const data = await res.json();
   const headlineData: hedlineType[] = data.data;
-  //   console.log(headlineData);
 
   return (
-    <div className="bg-red-600 text-white font-bold flex items-center max-w-7xl mx-auto ">
-      <div className="bg-red-800 p-1.5 rounded font-bold">সর্বশেষ»</div>
+    <div className="flex w-full max-w-7xl items-center overflow-hidden bg-red-600 font-bold text-white mx-auto">
+      <div className="shrink-0 rounded bg-red-800 p-1.5 font-bold">
+        সর্বশেষ»
+      </div>
+
       <MarqueeText
-        className="p-1.5"
+        className="min-w-0 flex-1 p-1.5"
         direction="right"
         duration={10}
         pauseOnHover={true}
       >
         {headlineData.map((headline) => (
-          <span key={headline.id}>
+          <span key={headline.id} className="whitespace-nowrap">
             <span className="mx-3">✶</span>
             <span>{headline.title}</span>
           </span>
