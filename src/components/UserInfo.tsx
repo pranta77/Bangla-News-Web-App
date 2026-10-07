@@ -13,43 +13,43 @@ const UserInfo = () => {
   };
 
   return (
-    <div className="absolute right-5 top-5">
+    <div className="absolute right-3 top-3 z-50 sm:right-5 sm:top-5">
       {user ? (
-        <div className="flex items-center gap-3 rounded-full border border-gray-200 bg-white px-3 py-2 shadow-md">
+        <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-2 py-2 shadow-md sm:gap-3 sm:px-3">
           {/* User Image */}
-          <Link href={"/profile"}>
-          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border-2 border-red-100">
-            {user.image ? (
-              <Image
-                src={user.image}
-                alt={user.name || "User"}
-                fill
-                className="object-cover"
-                
-              />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center bg-red-100 text-sm font-bold text-red-600">
-                {user.name?.charAt(0).toUpperCase()}
-              </div>
-            )}
-          </div></Link>
+          <Link href="/profile" className="shrink-0">
+            <div className="relative h-9 w-9 overflow-hidden rounded-full border-2 border-red-100 sm:h-10 sm:w-10">
+              {user.image ? (
+                <Image
+                  src={user.image}
+                  alt={user.name || "User"}
+                  fill
+                  className="object-cover"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-red-100 text-sm font-bold text-red-600">
+                  {user.name?.charAt(0).toUpperCase()}
+                </div>
+              )}
+            </div>
+          </Link>
 
           {/* Name + Email */}
-          <div className="min-w-0">
-            <h3 className="max-width: 140px; truncate text-sm font-bold text-gray-900">
+          <div className="hidden min-w-0 sm:block">
+            <h3 className="max-w-30 truncate text-sm font-bold text-gray-900 md:max-w-35">
               {user.name}
             </h3>
 
-            <p className="max-width: 160px; truncate text-xs text-gray-500">
+            <p className="max-w-35 truncate text-xs text-gray-500 md:max-w-40">
               {user.email}
             </p>
           </div>
 
-          {/* Sign Out Button */}
+          {/* Sign Out */}
           <button
             onClick={handleSignOut}
             title="Sign Out"
-            className="group ml-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-600 transition-all duration-300 hover:bg-red-600 hover:text-white hover:shadow-md hover:shadow-red-200"
+            className="group flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-600 transition-all duration-300 hover:bg-red-600 hover:text-white hover:shadow-md hover:shadow-red-200 sm:h-9 sm:w-9"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -57,7 +57,7 @@ const UserInfo = () => {
               viewBox="0 0 24 24"
               strokeWidth={2}
               stroke="currentColor"
-              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+              className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 sm:h-5 sm:w-5"
             >
               <path
                 strokeLinecap="round"
@@ -68,17 +68,17 @@ const UserInfo = () => {
           </button>
         </div>
       ) : (
-        <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white p-1 shadow-md">
+        <div className="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1 shadow-md sm:gap-2">
           <Link
             href="/signin"
-            className="rounded-full px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 hover:text-red-600"
+            className="rounded-full px-3 py-2 text-xs font-medium text-gray-700 transition hover:bg-gray-100 hover:text-red-600 sm:px-4 sm:text-sm"
           >
             সাইন ইন
           </Link>
 
           <Link
             href="/signup"
-            className="rounded-full bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-700"
+            className="rounded-full bg-red-600 px-3 py-2 text-xs font-semibold text-white transition hover:bg-red-700 sm:px-4 sm:text-sm"
           >
             সাইন আপ
           </Link>

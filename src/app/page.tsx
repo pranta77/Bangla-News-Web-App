@@ -11,6 +11,7 @@ interface NewsType {
   description: string;
   firstPublished: string;
 }
+
 interface OtherType {
   curationId: string;
   title: string;
@@ -18,41 +19,45 @@ interface OtherType {
 }
 
 export default async function Home() {
-  const res = await fetch("https://news-api-v2.vercel.app/api/news/sections");
+  const res = await fetch(
+    "https://news-api-v2.vercel.app/api/news/sections",
+  );
+
   const data = await res.json();
-  // console.log(data);
+
   const sectionsData = data.data;
-  // console.log(sectionsData);
+
   const mainNews: NewsType[] = sectionsData[0].articles;
-  // console.log(mainNews);
+
   const otherNews: OtherType[] = sectionsData.slice(1);
-  // console.log(otherNews);
 
   return (
-    <div>
-      <div className="grid grid-cols-3 max-w-7xl mx-auto ">
+    <main className="px-4 sm:px-6">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 lg:grid-cols-3">
         {/* News Sections */}
-        <div className="col-span-2 mt-5">
+        <div className="mt-5 min-w-0 lg:col-span-2">
           <MainNews news={mainNews} />
 
           {otherNews.map((other) => (
-            <div key={other.curationId}>
-              <h1 className="border-b-2 border-red-700 my-5 text-xl font-bold px-2 py-3">
+            <section key={other.curationId}>
+              <h1 className="my-5 border-b-2 border-red-700 px-2 py-3 text-lg font-bold sm:text-xl">
                 {other.title}
               </h1>
-              <div className="grid grid-cols-2 gap-3">
+
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 {other.articles.map((news) => (
                   <NewsCard key={news.id} news={news} />
                 ))}
               </div>
-            </div>
+            </section>
           ))}
         </div>
-        {/* Most Read Sections */}
-        <div className="col-span-1 mt-5 ml-3">
+
+        {/* Most Read */}
+        <aside className="mt-2 min-w-0 lg:sticky lg:top-5 lg:mt-5 lg:self-start">
           <MostRead />
-        </div>
+        </aside>
       </div>
-    </div>
+    </main>
   );
 }
